@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CostLens</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f7f9;
+            color: #111827;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2563eb;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #1d4ed8;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: #eef4ff;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            color: #6b7280;
+            max-width: 650px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            border: 1px solid #d1d5db;
+            color: #2563eb;
+            background: white;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #6b7280;
+        }
+
+        .footer {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CostLens</div>
+    </nav>
+
+    <section class="hero">
+        <div class="badge">Student-friendly budgeting</div>
+
+        <h1>See your <span>Cost of Living</span> clearly.</h1>
+
+        <p>
+            CostLens helps you understand your monthly affordability.
+            Enter your income and expenses and get a clear view of your budget — fast.
+        </p>
+
+        <div class="buttons">
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up →</a>
+            <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="card">
+            <h3>Simple monthly inputs</h3>
+            <p>Enter your income and expenses to instantly see affordability.</p>
+        </div>
+
+        <div class="card">
+            <h3>Clear affordability view</h3>
+            <p>Understand how comfortable your budget is after essentials.</p>
+        </div>
+
+        <div class="card">
+            <h3>Charts & history</h3>
+            <p>Track spending patterns and view past entries easily.</p>
+        </div>
+    </section>
+
+    <div class="footer">
+        Built for a university project.
+    </div>
+
+</body>
+</html>

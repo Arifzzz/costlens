@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>History - CostLens</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+        body { background: #f7f7f9; color: #111827; }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #2563eb;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links { display: flex; gap: 16px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #111827;
+            padding: 10px 18px;
+            border-radius: 18px;
+            font-weight: 600;
+        }
+
+        .nav-links a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .profile-dropdown { position: relative; }
+
+        .profile-dropdown::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 12px;
+        }
+
+        .profile-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
+            min-width: 180px;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.10);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #111827;
+            font-weight: 600;
+        }
+
+        .dropdown-menu a:hover { background: #f3f4f6; }
+
+        .profile-dropdown:hover .dropdown-menu { display: block; }
+
+        .page {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        h1 { font-size: 40px; margin-bottom: 20px; }
+
+        .box {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        .box h2 { margin-bottom: 18px; font-size: 24px; }
+
+        .history-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .history-item:last-child { border-bottom: none; }
+
+        .empty-text { color: #6b7280; }
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">CostLens</div>
+
+    <div class="nav-links">
+        <a href="{% url 'dashboard' %}">Home</a>
+        <a href="{% url 'budget' %}">Budget</a>
+        <a href="{% url 'cost_of_living' %}">Cost of Living</a>
+    </div>
+
+    <div class="profile-dropdown">
+        <button class="profile-btn">{{ request.user.username }} ▾</button>
+        <div class="dropdown-menu">
+            <a href="{% url 'profile' %}">Account</a>
+            <a href="{% url 'history' %}">History</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="page">
+    <h1>History</h1>
+
+    <div class="box">
+        <h2>Budget History</h2>
+
+        {% if budget_history %}
+            {% for entry in budget_history %}
+                <div class="history-item">
+                    <strong>{{ entry.created_at|date:"d M Y, H:i" }}</strong>
+                    <p>Income: £{{ entry.monthly_income }}</p>
+                    <p>Expenses: £{{ entry.total_expenses }}</p>
+                    <p>Remaining: £{{ entry.remaining_balance }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty-text">No budget history yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="box">
+        <h2>Cost of Living History</h2>
+
+        {% if cost_history %}
+            {% for entry in cost_history %}
+                <div class="history-item">
+                    <strong>{{ entry.created_at|date:"d M Y, H:i" }}</strong>
+                    <p>Salary: £{{ entry.salary }}</p>
+                    <p>Preferred City: {{ entry.preferred_city|default:"None" }}</p>
+                    <p>Best Option: {{ entry.best_shop }} in {{ entry.best_city }}</p>
+                    <p>Total Cost: £{{ entry.best_total_cost }}</p>
+                    <p>Remaining: £{{ entry.best_remaining }}</p>
+                    <p>Affordability Score: {{ entry.affordability_score }}/100</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty-text">No cost of living history yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
