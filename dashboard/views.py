@@ -156,7 +156,6 @@ def cost_of_living(request):
         CostOfLivingEntry.objects.create(
             user=request.user,
             salary=salary,
-            city=best_option["city"],
             affordability_score=best_option["score"],
         )
 
