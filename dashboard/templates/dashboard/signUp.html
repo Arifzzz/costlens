@@ -5,152 +5,150 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sign Up - CostLens</title>
+
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        *{
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
         }
 
-        body {
-            margin: 0;
-            background: #f7f7f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        body{
+            margin:0;
+            background:#f7f7f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
         }
 
-        .auth-box {
-            width: 100%;
-            max-width: 460px;
-            background: white;
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            border: 1px solid #e5e7eb;
-            overflow: visible;
+        .auth-box{
+            width:100%;
+            max-width:460px;
+            background:white;
+            padding:35px;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.06);
+            border:1px solid #e5e7eb;
         }
 
-        .auth-logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            width: 100%;
+        .brand{
+            text-align:center;
+            color:#2563eb;
+            font-size:18px;
+            font-weight:700;
+            margin-bottom:14px;
         }
 
-        .auth-logo img {
-            display: block;
-            width: 220px;
-            max-width: 100%;
-            height: auto;
-            transition: transform 0.3s ease, filter 0.3s ease;
+        h1{
+            text-align:center;
+            margin:0 0 10px 0;
+            color:#2563eb;
+            font-size:48px;
+            font-weight:800;
         }
 
-        .auth-logo img:hover {
-            transform: scale(1.05) rotate(-2deg);
-            filter: drop-shadow(0 8px 18px rgba(37, 99, 235, 0.22));
+        .subtitle{
+            text-align:center;
+            color:#6b7280;
+            margin-bottom:25px;
+            font-size:18px;
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #2563eb;
+        form p{
+            text-align:left;
+            margin-bottom:15px;
+            color:#111827;
         }
 
-        .subtitle {
-            text-align: center;
-            color: #6b7280;
-            margin-bottom: 25px;
+        label{
+            font-weight:600;
         }
 
-        form p {
-            text-align: left;
-            margin-bottom: 15px;
-            color: #111827;
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:6px;
+            border:1px solid #d1d5db;
+            border-radius:10px;
+            font-size:15px;
         }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            border: 1px solid #d1d5db;
-            border-radius: 10px;
-            font-size: 15px;
+        button{
+            width:100%;
+            border:none;
+            background:#2563eb;
+            color:white;
+            padding:14px;
+            border-radius:12px;
+            font-size:16px;
+            font-weight:700;
+            cursor:pointer;
+            margin-top:14px;
         }
 
-        button {
-            width: 100%;
-            border: none;
-            background: #2563eb;
-            color: white;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 14px;
+        button:hover{
+            background:#1d4ed8;
         }
 
-        button:hover {
-            background: #1d4ed8;
+        .bottom-link{
+            text-align:center;
+            margin-top:18px;
+            color:#6b7280;
         }
 
-        .bottom-link {
-            text-align: center;
-            margin-top: 18px;
-            color: #6b7280;
+        .bottom-link a{
+            color:#2563eb;
+            text-decoration:none;
+            font-weight:600;
         }
 
-        .bottom-link a {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 600;
+        ul.errorlist{
+            color:red;
+            padding-left:20px;
+            margin-bottom:10px;
         }
 
-        ul.errorlist {
-            color: red;
-            padding-left: 20px;
-            margin-bottom: 10px;
+        .helptext{
+            display:block;
+            font-size:13px;
+            color:#6b7280;
+            margin-top:4px;
         }
 
-        .helptext {
-            display: block;
-            font-size: 13px;
-            color: #6b7280;
-            margin-top: 4px;
-        }
-
-        @media (max-width: 520px) {
-            .auth-box {
-                max-width: 92%;
-                padding: 26px;
+        @media (max-width:520px){
+            .auth-box{
+                max-width:92%;
+                padding:26px;
             }
 
-            .auth-logo img {
-                width: 180px;
+            h1{
+                font-size:40px;
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="auth-box">
-        <div class="auth-logo">
-            <img src="{% static 'dashboard/images/costlens-logo.png' %}" alt="CostLens Logo">
-        </div>
 
-        <h1>Create Account</h1>
-        <p class="subtitle">Sign up to access your CostLens dashboard.</p>
+<div class="auth-box">
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Sign Up</button>
-        </form>
+    <div class="brand">CostLens</div>
 
-        <div class="bottom-link">
-            Already have an account? <a href="{% url 'login' %}">Login</a>
-        </div>
+    <h1>Create Account</h1>
+    <p class="subtitle">Sign up to access your CostLens dashboard.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="bottom-link">
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
     </div>
+
+</div>
+
 </body>
 </html>
