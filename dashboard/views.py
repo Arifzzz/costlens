@@ -8,7 +8,7 @@ from .forms import UserUpdateForm
 
 
 def landing(request):
-    return render(request, "dashboard/Index.html")
+    return render(request, "dashboard/index.html")
 
 
 def signup(request):
@@ -87,7 +87,7 @@ def budget(request):
             "remaining_balance": remaining_balance
         }
 
-    return render(request, "dashboard/Budget.html", {"result": result})
+    return render(request, "dashboard/budget.html", {"result": result})
 
 
 @login_required
@@ -156,11 +156,7 @@ def cost_of_living(request):
         CostOfLivingEntry.objects.create(
             user=request.user,
             salary=salary,
-            preferred_city=preferred_city,
-            best_city=best_option["city"],
-            best_shop=best_option["shop"],
-            best_total_cost=best_option["total"],
-            best_remaining=best_option["remaining"],
+            city=best_option["city"],
             affordability_score=best_option["score"],
         )
 
