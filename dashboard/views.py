@@ -89,7 +89,6 @@ def budget(request):
 
     return render(request, "dashboard/budget.html", {"result": result})
 
-
 @login_required
 def cost_of_living(request):
     result = None
