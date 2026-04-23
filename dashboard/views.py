@@ -112,13 +112,13 @@ def cost_of_living(request):
         },
     }
 
-        if request.method == "POST":
-        monthly_salary = Decimal(request.POST.get("salary", "0"))
-        preferred_city = request.POST.get("preferred_city", "")
+    if request.method == "POST":
+         monthly_salary = Decimal(request.POST.get("salary", "0"))
+         preferred_city = request.POST.get("preferred_city", "")
 
-        comparisons = []
+    comparisons = []
 
-        for city, shops in data.items():
+    for city, shops in data.items():
             for shop, costs in shops.items():
                 total_cost = Decimal(sum(costs.values()))
                 remaining = monthly_salary - total_cost
@@ -151,20 +151,27 @@ def cost_of_living(request):
                     "preferred": city == preferred_city,
                 })
 
-        best_option = min(comparisons, key=lambda x: x["total"])
+    best_option = min(comparisons, key=lambda x: x["total"])
 
-        CostOfLivingEntry.objects.create(
+    CostOfLivingEntry.objects.create(
             user=request.user,
-            monthly_salary=monthly_salary,
+            salary=monthly_salary,
             preferred_city=preferred_city,
             best_city=best_option["city"],
             best_shop=best_option["shop"],
-            best_total_cost=float(best_option["total"]),
-            best_remaining=float(best_option["remaining"]),
+            best_total_cost=best_option["total"],
+            best_remaining=best_option["remaining"],
             affordability_score=best_option["score"],
         )
 
-        result = {
+    result = {
+            "monthly_salary": monthly_salary,
+            "preferred_city": preferred_city,
+            "comparisons": comparisons,
+            "best": best_option,
+        }
+
+    result = {
             "monthly_salary": monthly_salary,
             "preferred_city": preferred_city,
             "comparisons": comparisons,
