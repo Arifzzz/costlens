@@ -113,7 +113,7 @@ def cost_of_living(request):
     }
 
     if request.method == "POST":
-        salary = Decimal(request.POST.get("salary", "0"))
+        monthly_salary = Decimal(request.POST.get("salary", "0"))
         preferred_city = request.POST.get("preferred_city", "")
 
         comparisons = []
@@ -121,10 +121,10 @@ def cost_of_living(request):
         for city, shops in data.items():
             for shop, costs in shops.items():
                 total_cost = Decimal(sum(costs.values()))
-                remaining = salary - total_cost
+                remaining = monthly_salary - total_cost
 
-                if salary > 0:
-                    score = int(max(0, min(100, (remaining / salary) * 100)))
+                if monthly_salary > 0:
+                    score = int(max(0, min(100, (remaining / monthly_salary) * 100)))
                 else:
                     score = 0
 
@@ -155,12 +155,17 @@ def cost_of_living(request):
 
         CostOfLivingEntry.objects.create(
             user=request.user,
-            salary=salary,
+            monthly_salary=monthly_salary,
+            preferred_city=preferred_city,
+            best_city=best_option["city"],
+            best_shop=best_option["shop"],
+            best_total_cost=best_option["total"],
+            best_remaining=best_option["remaining"],
             affordability_score=best_option["score"],
         )
 
         result = {
-            "salary": salary,
+            "monthly_salary": monthly_salary,
             "preferred_city": preferred_city,
             "comparisons": comparisons,
             "best": best_option,
