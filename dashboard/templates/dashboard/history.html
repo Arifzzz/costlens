@@ -1,50 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares this as an HTML5 document -->
+<html lang="en"> <!-- Main HTML element with English language set -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>History - CostLens</title>
+    <meta charset="UTF-8"> <!-- Supports standard text characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Makes page responsive on mobile -->
+    <title>History - CostLens</title> <!-- Browser tab title -->
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; } /* Removes default spacing and sets a clean font */
 
-        body { background: #f7f7f9; color: #111827; }
+        body { background: #f7f7f9; color: #111827; } /* Light page background with dark readable text */
 
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 60px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
+            display: flex; /* Places navbar items in one row */
+            justify-content: space-between; /* Spaces logo, links and profile apart */
+            align-items: center; /* Vertically centers navbar items */
+            padding: 18px 60px; /* Space inside navbar */
+            background: white; /* White navbar background */
+            border-bottom: 1px solid #e5e7eb; /* Bottom border for separation */
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            color: #2563eb;
-            letter-spacing: 0.5px;
+            font-size: 26px; /* Logo text size */
+            font-weight: 800; /* Makes logo bold */
+            color: #2563eb; /* Blue brand colour */
+            letter-spacing: 0.5px; /* Slight spacing between letters */
         }
 
-        .nav-links { display: flex; gap: 16px; }
+        .nav-links { display: flex; gap: 16px; } /* Keeps nav links in a row with spacing */
 
         .nav-links a {
-            text-decoration: none;
-            color: #111827;
-            padding: 10px 18px;
-            border-radius: 18px;
-            font-weight: 600;
+            text-decoration: none; /* Removes underline */
+            color: #111827; /* Normal link colour */
+            padding: 10px 18px; /* Button-like spacing */
+            border-radius: 18px; /* Rounded corners */
+            font-weight: 600; /* Semi-bold text */
         }
 
         .nav-links a.active {
-            background: #2563eb;
-            color: white;
+            background: #2563eb; /* Highlights active page */
+            color: white; /* White text on active page */
         }
 
-        .profile-dropdown { position: relative; }
+        .profile-dropdown { position: relative; } /* Needed so dropdown menu positions correctly */
 
         .profile-dropdown::after {
-            content: "";
+            content: ""; /* Invisible hover area below button */
             position: absolute;
             top: 100%;
             width: 100%;
@@ -52,72 +52,72 @@
         }
 
         .profile-btn {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 999px;
-            font-weight: 700;
-            cursor: pointer;
+            background: #2563eb; /* Blue profile button */
+            color: white; /* White text */
+            border: none; /* Removes default border */
+            padding: 10px 22px; /* Space inside button */
+            border-radius: 999px; /* Makes button pill shaped */
+            font-weight: 700; /* Bold username text */
+            cursor: pointer; /* Shows clickable pointer */
         }
 
         .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            overflow: hidden;
-            min-width: 180px;
-            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.10);
+            display: none; /* Hidden until hover */
+            position: absolute; /* Positioned under profile button */
+            top: calc(100% + 10px); /* Small gap below button */
+            right: 0; /* Aligns menu to the right */
+            background: white; /* White dropdown background */
+            border: 1px solid #e5e7eb; /* Light border */
+            border-radius: 16px; /* Rounded corners */
+            overflow: hidden; /* Keeps dropdown corners neat */
+            min-width: 180px; /* Minimum width */
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.10); /* Soft shadow */
         }
 
         .dropdown-menu a {
-            display: block;
-            padding: 12px 16px;
-            text-decoration: none;
-            color: #111827;
-            font-weight: 600;
+            display: block; /* Makes each link fill one row */
+            padding: 12px 16px; /* Space inside each link */
+            text-decoration: none; /* Removes underline */
+            color: #111827; /* Link text colour */
+            font-weight: 600; /* Semi-bold text */
         }
 
-        .dropdown-menu a:hover { background: #f3f4f6; }
+        .dropdown-menu a:hover { background: #f3f4f6; } /* Light hover effect */
 
-        .profile-dropdown:hover .dropdown-menu { display: block; }
+        .profile-dropdown:hover .dropdown-menu { display: block; } /* Shows dropdown on hover */
 
         .page {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
+            max-width: 1100px; /* Limits content width */
+            margin: 50px auto; /* Centers page with spacing above and below */
+            padding: 0 20px; /* Side padding */
         }
 
-        h1 { font-size: 40px; margin-bottom: 20px; }
+        h1 { font-size: 40px; margin-bottom: 20px; } /* Main page heading styling */
 
         .box {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid #e5e7eb;
-            margin-bottom: 20px;
+            background: white; /* White card background */
+            border-radius: 20px; /* Rounded corners */
+            padding: 25px; /* Inner spacing */
+            border: 1px solid #e5e7eb; /* Light border */
+            margin-bottom: 20px; /* Gap below each box */
         }
 
-        .box h2 { margin-bottom: 18px; font-size: 24px; }
+        .box h2 { margin-bottom: 18px; font-size: 24px; } /* Section heading styling */
 
         .history-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
+            padding: 15px 0; /* Space inside each history entry */
+            border-bottom: 1px solid #eee; /* Line between entries */
         }
 
-        .history-item:last-child { border-bottom: none; }
+        .history-item:last-child { border-bottom: none; } /* Removes border from final item */
 
-        .empty-text { color: #6b7280; }
+        .empty-text { color: #6b7280; } /* Softer text for empty state message */
 
         @media (max-width: 900px) {
             .navbar {
-                flex-direction: column;
-                gap: 16px;
-                padding: 20px;
+                flex-direction: column; /* Stacks navbar vertically on smaller screens */
+                gap: 16px; /* Space between stacked items */
+                padding: 20px; /* Slightly adjusted mobile padding */
             }
         }
     </style>
@@ -125,62 +125,62 @@
 
 <body>
 
-<nav class="navbar">
-    <div class="logo">CostLens</div>
+<nav class="navbar"> <!-- Top navigation bar -->
+    <div class="logo">CostLens</div> <!-- Website text logo -->
 
-    <div class="nav-links">
-        <a href="{% url 'dashboard' %}">Home</a>
-        <a href="{% url 'budget' %}">Budget</a>
-        <a href="{% url 'cost_of_living' %}">Cost of Living</a>
+    <div class="nav-links"> <!-- Main navigation links -->
+        <a href="{% url 'dashboard' %}">Home</a> <!-- Link to dashboard -->
+        <a href="{% url 'budget' %}">Budget</a> <!-- Link to budget page -->
+        <a href="{% url 'cost_of_living' %}">Cost of Living</a> <!-- Link to cost of living page -->
     </div>
 
-    <div class="profile-dropdown">
-        <button class="profile-btn">{{ request.user.username }} ▾</button>
-        <div class="dropdown-menu">
-            <a href="{% url 'profile' %}">Account</a>
-            <a href="{% url 'history' %}">History</a>
-            <a href="{% url 'logout' %}">Logout</a>
+    <div class="profile-dropdown"> <!-- Dropdown for user actions -->
+        <button class="profile-btn">{{ request.user.username }} ▾</button> <!-- Shows logged in username -->
+        <div class="dropdown-menu"> <!-- Hidden dropdown menu -->
+            <a href="{% url 'profile' %}">Account</a> <!-- Opens profile page -->
+            <a href="{% url 'history' %}">History</a> <!-- Opens history page -->
+            <a href="{% url 'logout' %}">Logout</a> <!-- Logs user out -->
         </div>
     </div>
 </nav>
 
-<div class="page">
-    <h1>History</h1>
+<div class="page"> <!-- Main page content area -->
+    <h1>History</h1> <!-- Main page heading -->
 
-    <div class="box">
-        <h2>Budget History</h2>
+    <div class="box"> <!-- Budget history section -->
+        <h2>Budget History</h2> <!-- Section heading -->
 
-        {% if budget_history %}
-            {% for entry in budget_history %}
-                <div class="history-item">
-                    <strong>{{ entry.created_at|date:"d M Y, H:i" }}</strong>
-                    <p>Income: £{{ entry.monthly_income }}</p>
-                    <p>Expenses: £{{ entry.total_expenses }}</p>
-                    <p>Remaining: £{{ entry.remaining_balance }}</p>
+        {% if budget_history %} <!-- Checks if any budget history exists -->
+            {% for entry in budget_history %} <!-- Loops through each saved budget entry -->
+                <div class="history-item"> <!-- Single budget history record -->
+                    <strong>{{ entry.created_at|date:"d M Y, H:i" }}</strong> <!-- Date and time of entry -->
+                    <p>Income: £{{ entry.monthly_income }}</p> <!-- Saved monthly income -->
+                    <p>Expenses: £{{ entry.total_expenses }}</p> <!-- Saved total expenses -->
+                    <p>Remaining: £{{ entry.remaining_balance }}</p> <!-- Saved remaining balance -->
                 </div>
             {% endfor %}
         {% else %}
-            <p class="empty-text">No budget history yet.</p>
+            <p class="empty-text">No budget history yet.</p> <!-- Message shown if there are no budget records -->
         {% endif %}
     </div>
 
-    <div class="box">
-        <h2>Cost of Living History</h2>
+    <div class="box"> <!-- Cost of living history section -->
+        <h2>Cost of Living History</h2> <!-- Section heading -->
 
-        {% if cost_history %}
-            {% for entry in cost_history %}
-                <div class="history-item">
-                    <strong>{{ entry.created_at|date:"d M Y, H:i" }}</strong>
-                    <p>Salary: £{{ entry.salary }}</p>
-                    <p>Preferred City: {{ entry.preferred_city|default:"None" }}</p>
-                    <p>Best Option: {{ entry.best_shop }} in {{ entry.best_city }}</p>
-                    <p>Total Cost: £{{ entry.best_total_cost }}</p>
-                    <p>Remaining: £{{ entry.best_remaining }}</p>
-                    <p>Affordability Score: {{ entry.affordability_score }}/100</p>
+        {% if cost_history %} <!-- Checks if any cost of living history exists -->
+            {% for entry in cost_history %} <!-- Loops through each saved cost of living entry -->
+                <div class="history-item"> <!-- Single cost of living history record -->
+                    <strong>{{ entry.created_at|date:"d M Y, H:i" }}</strong> <!-- Date and time of entry -->
+                    <p>Salary: £{{ entry.salary }}</p> <!-- Saved salary -->
+                    <p>Preferred City: {{ entry.preferred_city|default:"None" }}</p> <!-- Shows selected city or None if empty -->
+                    <p>Best Option: {{ entry.best_shop }} in {{ entry.best_city }}</p> <!-- Best result found for that entry -->
+                    <p>Total Cost: £{{ entry.best_total_cost }}</p> <!-- Best total cost -->
+                    <p>Remaining: £{{ entry.best_remaining }}</p> <!-- Remaining money after costs -->
+                    <p>Affordability Score: {{ entry.affordability_score }}/100</p> <!-- Affordability score -->
                 </div>
             {% endfor %}
         {% else %}
-            <p class="empty-text">No cost of living history yet.</p>
+            <p class="empty-text">No cost of living history yet.</p> <!-- Message shown if there are no cost records -->
         {% endif %}
     </div>
 </div>

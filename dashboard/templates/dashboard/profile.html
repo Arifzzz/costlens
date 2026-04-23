@@ -1,45 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares this as an HTML5 document -->
+<html lang="en"> <!-- Main HTML element with English language set -->
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Profile - CostLens</title>
+    <meta charset="UTF-8" /> <!-- Supports standard text characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Makes page responsive on mobile -->
+    <title>Profile - CostLens</title> <!-- Browser tab title -->
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; } /* Removes default spacing and sets a clean font */
 
-        body { background: #f7f7f9; color: #111827; }
+        body { background: #f7f7f9; color: #111827; } /* Light background with dark readable text */
 
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 60px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
+            display: flex; /* Places navbar items in one row */
+            justify-content: space-between; /* Spaces logo, links and profile apart */
+            align-items: center; /* Vertically centers navbar items */
+            padding: 18px 60px; /* Space inside navbar */
+            background: white; /* White navbar background */
+            border-bottom: 1px solid #e5e7eb; /* Bottom border for separation */
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            color: #2563eb;
-            letter-spacing: 0.5px;
+            font-size: 26px; /* Logo text size */
+            font-weight: 800; /* Makes logo bold */
+            color: #2563eb; /* Blue brand colour */
+            letter-spacing: 0.5px; /* Slight spacing between letters */
         }
 
-        .nav-links { display: flex; gap: 16px; }
+        .nav-links { display: flex; gap: 16px; } /* Keeps nav links in a row with spacing */
 
         .nav-links a {
-            text-decoration: none;
-            color: #111827;
-            padding: 10px 18px;
-            border-radius: 18px;
-            font-weight: 600;
+            text-decoration: none; /* Removes underline */
+            color: #111827; /* Normal link colour */
+            padding: 10px 18px; /* Button-like spacing */
+            border-radius: 18px; /* Rounded corners */
+            font-weight: 600; /* Semi-bold text */
         }
 
-        .profile-dropdown { position: relative; }
+        .profile-dropdown { position: relative; } /* Needed so dropdown menu positions correctly */
 
         .profile-dropdown::after {
-            content: "";
+            content: ""; /* Invisible hover area below button */
             position: absolute;
             top: 100%;
             width: 100%;
@@ -47,107 +47,107 @@
         }
 
         .profile-btn {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 999px;
-            font-weight: 700;
-            cursor: pointer;
+            background: #2563eb; /* Blue profile button */
+            color: white; /* White text */
+            border: none; /* Removes default border */
+            padding: 10px 22px; /* Space inside button */
+            border-radius: 999px; /* Makes button pill shaped */
+            font-weight: 700; /* Bold username text */
+            cursor: pointer; /* Shows clickable pointer */
         }
 
         .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            overflow: hidden;
-            min-width: 180px;
-            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.10);
+            display: none; /* Hidden until hover */
+            position: absolute; /* Positioned under profile button */
+            top: calc(100% + 10px); /* Small gap below button */
+            right: 0; /* Aligns menu to the right */
+            background: white; /* White dropdown background */
+            border: 1px solid #e5e7eb; /* Light border */
+            border-radius: 16px; /* Rounded corners */
+            overflow: hidden; /* Keeps dropdown corners neat */
+            min-width: 180px; /* Minimum width */
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.10); /* Soft shadow */
         }
 
         .dropdown-menu a {
-            display: block;
-            padding: 12px 16px;
-            text-decoration: none;
-            color: #111827;
-            font-weight: 600;
+            display: block; /* Makes each link fill one row */
+            padding: 12px 16px; /* Space inside each link */
+            text-decoration: none; /* Removes underline */
+            color: #111827; /* Link text colour */
+            font-weight: 600; /* Semi-bold text */
         }
 
-        .dropdown-menu a:hover { background: #f3f4f6; }
+        .dropdown-menu a:hover { background: #f3f4f6; } /* Light hover effect */
 
-        .profile-dropdown:hover .dropdown-menu { display: block; }
+        .profile-dropdown:hover .dropdown-menu { display: block; } /* Shows dropdown on hover */
 
         .page {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
+            max-width: 1100px; /* Limits content width */
+            margin: 50px auto; /* Centers page with spacing above and below */
+            padding: 0 20px; /* Side padding */
         }
 
-        h1 { font-size: 40px; margin-bottom: 20px; }
+        h1 { font-size: 40px; margin-bottom: 20px; } /* Main page heading styling */
 
         .box {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid #e5e7eb;
-            margin-bottom: 20px;
+            background: white; /* White card background */
+            border-radius: 20px; /* Rounded corners */
+            padding: 25px; /* Inner spacing */
+            border: 1px solid #e5e7eb; /* Light border */
+            margin-bottom: 20px; /* Gap below each box */
         }
 
-        .box h2 { margin-bottom: 18px; font-size: 24px; }
+        .box h2 { margin-bottom: 18px; font-size: 24px; } /* Section heading styling */
 
         .message {
-            margin-bottom: 16px;
-            padding: 12px 16px;
-            background: #eef4ff;
-            border: 1px solid #bfd1ff;
-            color: #2563eb;
-            border-radius: 12px;
-            font-weight: 600;
+            margin-bottom: 16px; /* Space below message */
+            padding: 12px 16px; /* Inner spacing */
+            background: #eef4ff; /* Light blue background */
+            border: 1px solid #bfd1ff; /* Blue border */
+            color: #2563eb; /* Blue message text */
+            border-radius: 12px; /* Rounded corners */
+            font-weight: 600; /* Semi-bold text */
         }
 
-        form p { margin-bottom: 14px; }
+        form p { margin-bottom: 14px; } /* Space between Django form fields */
 
         input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d5db;
-            border-radius: 12px;
-            font-size: 15px;
+            width: 100%; /* Full width input fields */
+            padding: 12px 14px; /* Space inside input */
+            border: 1px solid #d1d5db; /* Light border */
+            border-radius: 12px; /* Rounded corners */
+            font-size: 15px; /* Input text size */
         }
 
         button {
-            border: none;
-            background: #2563eb;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 8px;
+            border: none; /* Removes default button border */
+            background: #2563eb; /* Main blue button */
+            color: white; /* White button text */
+            padding: 12px 18px; /* Space inside button */
+            border-radius: 12px; /* Rounded corners */
+            font-size: 15px; /* Button text size */
+            font-weight: 700; /* Bold button text */
+            cursor: pointer; /* Shows clickable pointer */
+            margin-top: 8px; /* Space above button */
         }
 
         ul.errorlist {
-            margin: 6px 0 10px 18px;
-            color: #dc2626;
+            margin: 6px 0 10px 18px; /* Positions validation errors neatly */
+            color: #dc2626; /* Red error text */
         }
 
         .helptext {
-            display: block;
-            margin-top: 4px;
-            color: #6b7280;
-            font-size: 13px;
+            display: block; /* Places help text on its own line */
+            margin-top: 4px; /* Small gap above help text */
+            color: #6b7280; /* Softer grey text */
+            font-size: 13px; /* Smaller text size */
         }
 
         @media (max-width: 900px) {
             .navbar {
-                flex-direction: column;
-                gap: 16px;
-                padding: 20px;
+                flex-direction: column; /* Stacks navbar vertically on smaller screens */
+                gap: 16px; /* Space between stacked items */
+                padding: 20px; /* Slightly adjusted mobile padding */
             }
         }
     </style>
@@ -155,49 +155,49 @@
 
 <body>
 
-<nav class="navbar">
-    <div class="logo">CostLens</div>
+<nav class="navbar"> <!-- Top navigation bar -->
+    <div class="logo">CostLens</div> <!-- Website text logo -->
 
-    <div class="nav-links">
-        <a href="{% url 'dashboard' %}">Home</a>
-        <a href="{% url 'budget' %}">Budget</a>
-        <a href="{% url 'cost_of_living' %}">Cost of Living</a>
+    <div class="nav-links"> <!-- Main navigation links -->
+        <a href="{% url 'dashboard' %}">Home</a> <!-- Link to dashboard -->
+        <a href="{% url 'budget' %}">Budget</a> <!-- Link to budget page -->
+        <a href="{% url 'cost_of_living' %}">Cost of Living</a> <!-- Link to cost of living page -->
     </div>
 
-    <div class="profile-dropdown">
-        <button class="profile-btn">{{ request.user.username }} ▾</button>
-        <div class="dropdown-menu">
-            <a href="{% url 'profile' %}">Account</a>
-            <a href="{% url 'history' %}">History</a>
-            <a href="{% url 'logout' %}">Logout</a>
+    <div class="profile-dropdown"> <!-- Dropdown for user actions -->
+        <button class="profile-btn">{{ request.user.username }} ▾</button> <!-- Shows logged in username -->
+        <div class="dropdown-menu"> <!-- Hidden dropdown menu -->
+            <a href="{% url 'profile' %}">Account</a> <!-- Opens profile page -->
+            <a href="{% url 'history' %}">History</a> <!-- Opens history page -->
+            <a href="{% url 'logout' %}">Logout</a> <!-- Logs user out -->
         </div>
     </div>
 </nav>
 
-<div class="page">
-    <h1>Profile</h1>
+<div class="page"> <!-- Main page content area -->
+    <h1>Profile</h1> <!-- Main page heading -->
 
     {% if message %}
-        <div class="message">{{ message }}</div>
+        <div class="message">{{ message }}</div> <!-- Shows success or update message -->
     {% endif %}
 
-    <div class="box">
+    <div class="box"> <!-- Account details section -->
         <h2>Account Details</h2>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ user_form.as_p }}
-            <button type="submit" name="update_details">Save Details</button>
+        <form method="POST"> <!-- Sends updated account details to backend -->
+            {% csrf_token %} <!-- Security token to protect form submission -->
+            {{ user_form.as_p }} <!-- Renders Django user details form as paragraphs -->
+            <button type="submit" name="update_details">Save Details</button> <!-- Submits account update -->
         </form>
     </div>
 
-    <div class="box">
+    <div class="box"> <!-- Change password section -->
         <h2>Change Password</h2>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ password_form.as_p }}
-            <button type="submit" name="change_password">Update Password</button>
+        <form method="POST"> <!-- Sends password change data to backend -->
+            {% csrf_token %} <!-- Security token to protect form submission -->
+            {{ password_form.as_p }} <!-- Renders Django password form as paragraphs -->
+            <button type="submit" name="change_password">Update Password</button> <!-- Submits password update -->
         </form>
     </div>
 </div>

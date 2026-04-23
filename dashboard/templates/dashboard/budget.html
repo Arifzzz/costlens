@@ -1,70 +1,70 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html> <!-- Declares this as an HTML5 document -->
+<html lang="en"> <!-- Main HTML element with English language set -->
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Budget - CostLens</title>
+    <meta charset="UTF-8" /> <!-- Supports standard text characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Makes page responsive on mobile -->
+    <title>Budget - CostLens</title> <!-- Browser tab title -->
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            margin: 0; /* Removes default spacing */
+            padding: 0; /* Removes default inner spacing */
+            box-sizing: border-box; /* Makes width and height easier to control */
+            font-family: Arial, sans-serif; /* Main font used across page */
         }
 
         body {
-            background: #f7f7f9;
-            color: #111827;
+            background: #f7f7f9; /* Light background colour */
+            color: #111827; /* Main text colour */
         }
 
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 60px;
-            border-bottom: 1px solid #d9d9de;
-            background: #ffffff;
+            display: flex; /* Places navbar items in one row */
+            justify-content: space-between; /* Spaces logo, nav links and profile apart */
+            align-items: center; /* Vertically centers navbar items */
+            padding: 18px 60px; /* Space inside navbar */
+            border-bottom: 1px solid #d9d9de; /* Bottom border for separation */
+            background: #ffffff; /* White navbar background */
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            color: #2563eb;
-            letter-spacing: 0.5px;
+            font-size: 26px; /* Logo text size */
+            font-weight: 800; /* Makes logo bold */
+            color: #2563eb; /* Blue brand colour */
+            letter-spacing: 0.5px; /* Slight spacing between letters */
         }
 
         .nav-links {
-            display: flex;
-            gap: 16px;
-            align-items: center;
+            display: flex; /* Keeps nav links in a row */
+            gap: 16px; /* Space between nav links */
+            align-items: center; /* Centers links vertically */
         }
 
         .nav-links a {
-            text-decoration: none;
-            color: #111827;
-            font-weight: 600;
-            padding: 10px 18px;
-            border-radius: 18px;
+            text-decoration: none; /* Removes underline */
+            color: #111827; /* Normal link colour */
+            font-weight: 600; /* Semi-bold text */
+            padding: 10px 18px; /* Button-like spacing */
+            border-radius: 18px; /* Rounded corners */
         }
 
         .nav-links a.active {
-            background: #2563eb;
-            color: white;
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+            background: #2563eb; /* Highlights current page */
+            color: white; /* White text on active page */
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25); /* Blue shadow effect */
         }
 
         .right-links {
-            display: flex;
-            align-items: center;
+            display: flex; /* Keeps right-side items aligned */
+            align-items: center; /* Centers vertically */
         }
 
         .profile-dropdown {
-            position: relative;
-            display: inline-block;
+            position: relative; /* Needed so dropdown menu positions correctly */
+            display: inline-block; /* Keeps dropdown together */
         }
 
         .profile-dropdown::after {
-            content: "";
+            content: ""; /* Invisible hover area under profile button */
             position: absolute;
             top: 100%;
             right: 0;
@@ -73,249 +73,249 @@
         }
 
         .profile-btn {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            min-width: 74px;
-            box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+            background: #2563eb; /* Blue button background */
+            color: white; /* White button text */
+            border: none; /* Removes default border */
+            padding: 10px 22px; /* Space inside button */
+            border-radius: 999px; /* Makes button pill shaped */
+            font-weight: 700; /* Bold username text */
+            font-size: 15px; /* Button text size */
+            cursor: pointer; /* Shows clickable pointer */
+            min-width: 74px; /* Minimum width so button stays neat */
+            box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22); /* Button shadow */
         }
 
         .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            min-width: 180px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.10);
-            overflow: hidden;
-            z-index: 1000;
+            display: none; /* Hidden until hover */
+            position: absolute; /* Positioned under profile button */
+            top: calc(100% + 10px); /* Slight gap below button */
+            right: 0; /* Aligns to the right */
+            min-width: 180px; /* Minimum dropdown width */
+            background: white; /* White dropdown background */
+            border: 1px solid #e5e7eb; /* Border around dropdown */
+            border-radius: 16px; /* Rounded corners */
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.10); /* Soft shadow */
+            overflow: hidden; /* Keeps corners clean */
+            z-index: 1000; /* Makes sure dropdown appears above other elements */
         }
 
         .dropdown-menu a {
-            display: block;
-            padding: 12px 16px;
-            text-decoration: none;
-            color: #111827;
-            font-weight: 600;
-            transition: background 0.2s ease;
+            display: block; /* Makes each link fill the row */
+            padding: 12px 16px; /* Space inside each dropdown link */
+            text-decoration: none; /* No underline */
+            color: #111827; /* Dropdown text colour */
+            font-weight: 600; /* Semi-bold text */
+            transition: background 0.2s ease; /* Smooth hover effect */
         }
 
         .dropdown-menu a:hover {
-            background: #f3f4f6;
+            background: #f3f4f6; /* Light grey hover effect */
         }
 
         .profile-dropdown:hover .dropdown-menu {
-            display: block;
+            display: block; /* Shows dropdown on hover */
         }
 
         .page {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
+            max-width: 1100px; /* Limits page width */
+            margin: 50px auto; /* Centers page with top/bottom spacing */
+            padding: 0 20px; /* Side padding */
         }
 
         .page h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-size: 42px; /* Main heading size */
+            margin-bottom: 10px; /* Space below heading */
         }
 
         .page p {
-            color: #6b7280;
-            font-size: 18px;
-            margin-bottom: 30px;
-            line-height: 1.6;
+            color: #6b7280; /* Softer paragraph colour */
+            font-size: 18px; /* Paragraph size */
+            margin-bottom: 30px; /* Space under intro text */
+            line-height: 1.6; /* Better readability */
         }
 
         .layout {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 20px;
+            display: grid; /* Creates two-column layout */
+            grid-template-columns: 1.2fr 0.8fr; /* Form side bigger than summary side */
+            gap: 20px; /* Gap between the two boxes */
         }
 
         .box {
-            background: white;
-            border: 1px solid #e4e4e7;
-            border-radius: 22px;
-            padding: 28px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            background: white; /* White card background */
+            border: 1px solid #e4e4e7; /* Light border */
+            border-radius: 22px; /* Rounded box corners */
+            padding: 28px; /* Inner spacing */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Soft shadow */
         }
 
         .box h2 {
-            margin-bottom: 18px;
-            font-size: 24px;
+            margin-bottom: 18px; /* Space under section headings */
+            font-size: 24px; /* Section heading size */
         }
 
         form {
-            display: grid;
-            gap: 16px;
+            display: grid; /* Organises form fields neatly */
+            gap: 16px; /* Gap between fields */
         }
 
         label {
-            font-weight: 600;
-            color: #374151;
-            display: block;
-            margin-bottom: 6px;
+            font-weight: 600; /* Slightly bold labels */
+            color: #374151; /* Dark grey text */
+            display: block; /* Label sits above input */
+            margin-bottom: 6px; /* Small gap before input */
         }
 
         input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d5db;
-            border-radius: 12px;
-            font-size: 15px;
+            width: 100%; /* Full width input fields */
+            padding: 12px 14px; /* Space inside input */
+            border: 1px solid #d1d5db; /* Light border */
+            border-radius: 12px; /* Rounded corners */
+            font-size: 15px; /* Input text size */
         }
 
         button[type="submit"] {
-            border: none;
-            background: #2563eb;
-            color: white;
-            padding: 14px;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 8px;
+            border: none; /* Removes default border */
+            background: #2563eb; /* Main blue button */
+            color: white; /* White button text */
+            padding: 14px; /* Button spacing */
+            border-radius: 14px; /* Rounded button */
+            font-size: 16px; /* Button text size */
+            font-weight: 700; /* Bold text */
+            cursor: pointer; /* Clickable pointer */
+            margin-top: 8px; /* Space above button */
         }
 
         .result-card {
-            background: #eef4ff;
-            border: 1px solid #bfd1ff;
-            border-radius: 18px;
-            padding: 20px;
-            margin-top: 18px;
+            background: #eef4ff; /* Light blue background for result area */
+            border: 1px solid #bfd1ff; /* Blue border */
+            border-radius: 18px; /* Rounded result card */
+            padding: 20px; /* Inner spacing */
+            margin-top: 18px; /* Space above result card */
         }
 
         .result-item {
-            margin-bottom: 14px;
+            margin-bottom: 14px; /* Space between each result line */
         }
 
         .result-item strong {
-            display: block;
-            color: #2563eb;
-            margin-bottom: 4px;
+            display: block; /* Heading appears above value */
+            color: #2563eb; /* Blue heading colour */
+            margin-bottom: 4px; /* Small gap below heading */
         }
 
         .tip {
-            color: #6b7280;
-            line-height: 1.6;
+            color: #6b7280; /* Grey help text */
+            line-height: 1.6; /* Easy to read */
         }
 
         @media (max-width: 900px) {
             .layout {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Stacks boxes on smaller screens */
             }
 
             .navbar {
-                flex-direction: column;
-                gap: 16px;
-                padding: 20px;
+                flex-direction: column; /* Navbar stacks vertically on smaller screens */
+                gap: 16px; /* Space between stacked items */
+                padding: 20px; /* Slightly smaller padding */
             }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">CostLens</div>
+    <nav class="navbar"> <!-- Top navigation bar -->
+        <div class="logo">CostLens</div> <!-- Website text logo -->
 
-        <div class="nav-links">
-            <a href="{% url 'dashboard' %}">Home</a>
-            <a href="{% url 'budget' %}" class="active">Budget</a>
-            <a href="{% url 'cost_of_living' %}">Cost of Living</a>
+        <div class="nav-links"> <!-- Main navigation links -->
+            <a href="{% url 'dashboard' %}">Home</a> <!-- Link to dashboard -->
+            <a href="{% url 'budget' %}" class="active">Budget</a> <!-- Current active budget page -->
+            <a href="{% url 'cost_of_living' %}">Cost of Living</a> <!-- Link to comparison page -->
         </div>
 
-        <div class="right-links">
-            <div class="profile-dropdown">
-                <button class="profile-btn">{{ request.user.username }} ▾</button>
-                <div class="dropdown-menu">
-                    <a href="{% url 'profile' %}">Account</a>
-                    <a href="{% url 'history' %}">History</a>
-                    <a href="{% url 'logout' %}">Logout</a>
+        <div class="right-links"> <!-- Right side navbar section -->
+            <div class="profile-dropdown"> <!-- Dropdown for user actions -->
+                <button class="profile-btn">{{ request.user.username }} ▾</button> <!-- Shows logged in username -->
+                <div class="dropdown-menu"> <!-- Hidden dropdown menu -->
+                    <a href="{% url 'profile' %}">Account</a> <!-- Opens profile page -->
+                    <a href="{% url 'history' %}">History</a> <!-- Opens saved history page -->
+                    <a href="{% url 'logout' %}">Logout</a> <!-- Logs user out -->
                 </div>
             </div>
         </div>
     </nav>
 
-    <section class="page">
-        <h1>Budget Calculator</h1>
+    <section class="page"> <!-- Main page content area -->
+        <h1>Budget Calculator</h1> <!-- Main page heading -->
         <p>
             Enter your monthly income and essential spending below.
             Your results will be saved automatically and shown in your profile history.
-        </p>
+        </p> <!-- Short explanation for the user -->
 
-        <div class="layout">
-            <div class="box">
-                <h2>Enter Your Monthly Budget</h2>
+        <div class="layout"> <!-- Two-column layout for form and summary -->
+            <div class="box"> <!-- Left card containing the form -->
+                <h2>Enter Your Monthly Budget</h2> <!-- Form section heading -->
 
-                <form method="POST">
-                    {% csrf_token %}
+                <form method="POST"> <!-- Sends budget data to backend -->
+                    {% csrf_token %} <!-- Security token to protect form submission -->
 
                     <div>
-                        <label for="monthly_income">Monthly Income (£)</label>
-                        <input type="number" step="0.01" name="monthly_income" id="monthly_income" required>
+                        <label for="monthly_income">Monthly Income (£)</label> <!-- Label for income field -->
+                        <input type="number" step="0.01" name="monthly_income" id="monthly_income" required> <!-- User income input -->
                     </div>
 
                     <div>
-                        <label for="rent">Rent (£)</label>
-                        <input type="number" step="0.01" name="rent" id="rent" required>
+                        <label for="rent">Rent (£)</label> <!-- Label for rent -->
+                        <input type="number" step="0.01" name="rent" id="rent" required> <!-- Rent input -->
                     </div>
 
                     <div>
-                        <label for="food">Food (£)</label>
-                        <input type="number" step="0.01" name="food" id="food" required>
+                        <label for="food">Food (£)</label> <!-- Label for food -->
+                        <input type="number" step="0.01" name="food" id="food" required> <!-- Food input -->
                     </div>
 
                     <div>
-                        <label for="transport">Transport (£)</label>
-                        <input type="number" step="0.01" name="transport" id="transport" required>
+                        <label for="transport">Transport (£)</label> <!-- Label for transport -->
+                        <input type="number" step="0.01" name="transport" id="transport" required> <!-- Transport input -->
                     </div>
 
                     <div>
-                        <label for="utilities">Utilities (£)</label>
-                        <input type="number" step="0.01" name="utilities" id="utilities" required>
+                        <label for="utilities">Utilities (£)</label> <!-- Label for utilities -->
+                        <input type="number" step="0.01" name="utilities" id="utilities" required> <!-- Utilities input -->
                     </div>
 
                     <div>
-                        <label for="other">Other Expenses (£)</label>
-                        <input type="number" step="0.01" name="other" id="other" value="0">
+                        <label for="other">Other Expenses (£)</label> <!-- Label for extra spending -->
+                        <input type="number" step="0.01" name="other" id="other" value="0"> <!-- Other expenses input -->
                     </div>
 
-                    <button type="submit">Calculate & Save</button>
+                    <button type="submit">Calculate & Save</button> <!-- Submits form and saves result -->
                 </form>
             </div>
 
-            <div class="box">
-                <h2>Budget Summary</h2>
+            <div class="box"> <!-- Right card showing results -->
+                <h2>Budget Summary</h2> <!-- Result section heading -->
 
-                {% if result %}
-                    <div class="result-card">
+                {% if result %} <!-- Checks if calculation result exists -->
+                    <div class="result-card"> <!-- Styled result box -->
                         <div class="result-item">
-                            <strong>Monthly Income</strong>
-                            £{{ result.monthly_income }}
+                            <strong>Monthly Income</strong> <!-- Result label -->
+                            £{{ result.monthly_income }} <!-- Shows entered monthly income -->
                         </div>
 
                         <div class="result-item">
-                            <strong>Total Expenses</strong>
-                            £{{ result.total_expenses }}
+                            <strong>Total Expenses</strong> <!-- Result label -->
+                            £{{ result.total_expenses }} <!-- Shows calculated total expenses -->
                         </div>
 
                         <div class="result-item">
-                            <strong>Remaining Balance</strong>
-                            £{{ result.remaining_balance }}
+                            <strong>Remaining Balance</strong> <!-- Result label -->
+                            £{{ result.remaining_balance }} <!-- Shows remaining money left -->
                         </div>
                     </div>
                 {% else %}
                     <p class="tip">
                         Your calculation results will appear here after you submit the form.
-                    </p>
+                    </p> <!-- Placeholder message before calculation -->
                 {% endif %}
             </div>
         </div>

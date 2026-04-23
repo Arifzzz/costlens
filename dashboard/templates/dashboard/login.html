@@ -1,128 +1,128 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% load static %} <!-- Loads Django static files if images, CSS or JS are needed later -->
+<!DOCTYPE html> <!-- Declares this as an HTML5 document -->
+<html lang="en"> <!-- Main HTML element with English language set -->
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - CostLens</title>
+<meta charset="UTF-8"> <!-- Supports standard text characters -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes page responsive on mobile -->
+<title>Login - CostLens</title> <!-- Browser tab title -->
 
 <style>
 body{
-    margin:0;
-    padding:0;
-    font-family:Arial, sans-serif;
-    background:#f3f4f6;
+    margin:0; /* Removes default browser spacing */
+    padding:0; /* Removes default inner spacing */
+    font-family:Arial, sans-serif; /* Main font used across page */
+    background:#f3f4f6; /* Light grey background colour */
 }
 
 .login-container{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    min-height:100vh; /* Makes section fill full screen height */
+    display:flex; /* Uses flexbox for centering */
+    justify-content:center; /* Centers content horizontally */
+    align-items:center; /* Centers content vertically */
 }
 
 .login-box{
-    width:420px;
-    background:white;
-    padding:40px;
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    width:420px; /* Fixed width for login card */
+    background:white; /* White card background */
+    padding:40px; /* Inner spacing */
+    border-radius:16px; /* Rounded corners */
+    box-shadow:0 10px 30px rgba(0,0,0,0.08); /* Soft shadow effect */
 }
 
 .brand{
-    font-size:18px;
-    font-weight:700;
-    color:#2563eb;
-    margin-bottom:10px;
+    font-size:18px; /* Brand text size */
+    font-weight:700; /* Makes brand bold */
+    color:#2563eb; /* Blue brand colour */
+    margin-bottom:10px; /* Space below brand text */
 }
 
 h1{
-    margin:0;
-    color:#2563eb;
-    font-size:42px;
-    font-weight:800;
+    margin:0; /* Removes default heading margin */
+    color:#2563eb; /* Blue heading colour */
+    font-size:42px; /* Main heading size */
+    font-weight:800; /* Makes heading extra bold */
 }
 
 .subtitle{
-    color:#666;
-    margin-top:10px;
-    margin-bottom:30px;
-    font-size:18px;
+    color:#666; /* Softer grey text */
+    margin-top:10px; /* Space above subtitle */
+    margin-bottom:30px; /* Space below subtitle */
+    font-size:18px; /* Subtitle text size */
 }
 
 label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:600;
-    color:#222;
+    display:block; /* Keeps label on its own line */
+    margin-bottom:8px; /* Space below label */
+    font-weight:600; /* Semi-bold label text */
+    color:#222; /* Dark text colour */
 }
 
 input{
-    width:100%;
-    padding:16px;
-    border-radius:12px;
-    border:1px solid #cbd5e1;
-    background:#e8edf5;
-    margin-bottom:20px;
-    font-size:16px;
-    box-sizing:border-box;
+    width:100%; /* Full width input fields */
+    padding:16px; /* Space inside input */
+    border-radius:12px; /* Rounded corners */
+    border:1px solid #cbd5e1; /* Light border */
+    background:#e8edf5; /* Light input background */
+    margin-bottom:20px; /* Space below each input */
+    font-size:16px; /* Input text size */
+    box-sizing:border-box; /* Keeps width calculations neat */
 }
 
 button{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:12px;
-    background:#2563eb;
-    color:white;
-    font-size:20px;
-    font-weight:700;
-    cursor:pointer;
+    width:100%; /* Full width button */
+    padding:16px; /* Space inside button */
+    border:none; /* Removes default border */
+    border-radius:12px; /* Rounded corners */
+    background:#2563eb; /* Main blue button */
+    color:white; /* White button text */
+    font-size:20px; /* Button text size */
+    font-weight:700; /* Bold button text */
+    cursor:pointer; /* Shows clickable pointer */
 }
 
 button:hover{
-    background:#1d4ed8;
+    background:#1d4ed8; /* Darker blue on hover */
 }
 
 .signup{
-    text-align:center;
-    margin-top:22px;
-    color:#666;
+    text-align:center; /* Centers signup text */
+    margin-top:22px; /* Space above signup section */
+    color:#666; /* Softer grey text */
 }
 
 .signup a{
-    color:#2563eb;
-    text-decoration:none;
-    font-weight:700;
+    color:#2563eb; /* Blue link colour */
+    text-decoration:none; /* Removes underline */
+    font-weight:700; /* Bold link text */
 }
 </style>
 </head>
 
 <body>
 
-<div class="login-container">
-    <div class="login-box">
+<div class="login-container"> <!-- Main container that centers login box -->
+    <div class="login-box"> <!-- Login card -->
 
-        <div class="brand">CostLens</div>
+        <div class="brand">CostLens</div> <!-- Website brand name -->
 
-        <h1>Welcome Back</h1>
-        <div class="subtitle">Login to continue to your dashboard.</div>
+        <h1>Welcome Back</h1> <!-- Main page heading -->
+        <div class="subtitle">Login to continue to your dashboard.</div> <!-- Short helper text -->
 
-        <form method="POST">
-            {% csrf_token %}
+        <form method="POST"> <!-- Sends login data to Django backend -->
+            {% csrf_token %} <!-- Security token to protect form submission -->
 
-            <label>Username:</label>
-            <input type="text" name="username" required>
+            <label>Username:</label> <!-- Username field label -->
+            <input type="text" name="username" required> <!-- Username input -->
 
-            <label>Password:</label>
-            <input type="password" name="password" required>
+            <label>Password:</label> <!-- Password field label -->
+            <input type="password" name="password" required> <!-- Password input -->
 
-            <button type="submit">Login</button>
+            <button type="submit">Login</button> <!-- Submit button -->
         </form>
 
-        <div class="signup">
+        <div class="signup"> <!-- Signup link section -->
             Don’t have an account?
-            <a href="{% url 'signup' %}">Sign up</a>
+            <a href="{% url 'signup' %}">Sign up</a> <!-- Link to signup page -->
         </div>
 
     </div>

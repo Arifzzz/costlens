@@ -1,145 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares this as an HTML5 document -->
+<html lang="en"> <!-- Main HTML element with English language set -->
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CostLens</title>
+    <meta charset="UTF-8" /> <!-- Supports standard text characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Makes page responsive on mobile -->
+    <title>CostLens</title> <!-- Browser tab title -->
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            margin: 0; /* Removes default spacing */
+            padding: 0; /* Removes default inner spacing */
+            box-sizing: border-box; /* Makes width and height easier to control */
+            font-family: Arial, sans-serif; /* Main font used across page */
         }
 
         body {
-            background: #f7f7f9;
-            color: #111827;
+            background: #f7f7f9; /* Light background colour */
+            color: #111827; /* Main text colour */
         }
 
         .navbar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #e5e7eb;
-            background: #ffffff;
+            display: flex; /* Uses flexbox for navbar layout */
+            justify-content: center; /* Centers the logo horizontally */
+            align-items: center; /* Centers items vertically */
+            padding: 20px; /* Space inside navbar */
+            border-bottom: 1px solid #e5e7eb; /* Bottom border for separation */
+            background: #ffffff; /* White navbar background */
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: #2563eb;
-            letter-spacing: 1px;
-            transition: 0.3s ease;
+            font-size: 28px; /* Logo text size */
+            font-weight: 800; /* Makes logo bold */
+            color: #2563eb; /* Blue brand colour */
+            letter-spacing: 1px; /* Adds slight spacing between letters */
+            transition: 0.3s ease; /* Smooth hover transition */
         }
 
         .logo:hover {
-            color: #1d4ed8;
-            transform: scale(1.05);
+            color: #1d4ed8; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect on hover */
         }
 
         .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
+            text-align: center; /* Centers hero section text */
+            padding: 80px 20px 40px; /* Top, side and bottom spacing */
         }
 
         .badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: #eef4ff;
-            color: #2563eb;
-            font-weight: 600;
-            margin-bottom: 20px;
+            display: inline-block; /* Keeps badge compact */
+            padding: 6px 14px; /* Space inside badge */
+            border-radius: 20px; /* Rounded pill shape */
+            background: #eef4ff; /* Light blue background */
+            color: #2563eb; /* Blue text */
+            font-weight: 600; /* Semi-bold badge text */
+            margin-bottom: 20px; /* Space below badge */
         }
 
         .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 16px;
+            font-size: 56px; /* Main heading size */
+            font-weight: 800; /* Bold heading */
+            margin-bottom: 16px; /* Space below heading */
         }
 
         .hero h1 span {
-            color: #2563eb;
+            color: #2563eb; /* Highlights part of heading in blue */
         }
 
         .hero p {
-            color: #6b7280;
-            max-width: 650px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
+            color: #6b7280; /* Softer paragraph colour */
+            max-width: 650px; /* Limits text width for readability */
+            margin: 0 auto 30px; /* Centers paragraph and adds bottom spacing */
+            line-height: 1.6; /* Better readability */
         }
 
         .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
+            display: flex; /* Places buttons in one row */
+            justify-content: center; /* Centers buttons */
+            gap: 14px; /* Space between buttons */
         }
 
         .btn {
-            padding: 14px 24px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
+            padding: 14px 24px; /* Space inside buttons */
+            border-radius: 12px; /* Rounded corners */
+            font-weight: 700; /* Bold button text */
+            text-decoration: none; /* Removes underline */
+            display: inline-block; /* Lets anchor behave like button */
         }
 
         .btn-primary {
-            background: #2563eb;
-            color: white;
+            background: #2563eb; /* Main blue button */
+            color: white; /* White button text */
         }
 
         .btn-primary:hover {
-            background: #1d4ed8;
+            background: #1d4ed8; /* Darker blue on hover */
         }
 
         .btn-secondary {
-            border: 1px solid #d1d5db;
-            color: #2563eb;
-            background: white;
+            border: 1px solid #d1d5db; /* Light border */
+            color: #2563eb; /* Blue text */
+            background: white; /* White button background */
         }
 
         .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 1100px;
-            margin: 60px auto;
-            padding: 0 20px;
+            display: grid; /* Uses grid layout for feature cards */
+            grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+            gap: 20px; /* Space between cards */
+            max-width: 1100px; /* Limits section width */
+            margin: 60px auto; /* Centers section with top and bottom spacing */
+            padding: 0 20px; /* Side padding */
         }
 
         .card {
-            background: white;
-            padding: 24px;
-            border-radius: 18px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            background: white; /* White card background */
+            padding: 24px; /* Inner spacing */
+            border-radius: 18px; /* Rounded corners */
+            border: 1px solid #e5e7eb; /* Light border */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Soft shadow */
         }
 
         .card h3 {
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Space below card heading */
         }
 
         .card p {
-            color: #6b7280;
+            color: #6b7280; /* Softer paragraph colour inside cards */
         }
 
         .footer {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #9ca3af;
-            font-size: 14px;
+            text-align: center; /* Centers footer text */
+            margin-bottom: 40px; /* Space below footer */
+            color: #9ca3af; /* Light grey text */
+            font-size: 14px; /* Smaller footer text */
         }
 
         @media (max-width: 900px) {
             .features {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Stacks feature cards on smaller screens */
             }
 
             .hero h1 {
-                font-size: 38px;
+                font-size: 38px; /* Reduces heading size on mobile */
             }
         }
     </style>
@@ -147,46 +147,46 @@
 
 <body>
 
-    <nav class="navbar">
-        <div class="logo">CostLens</div>
+    <nav class="navbar"> <!-- Top navigation bar -->
+        <div class="logo">CostLens</div> <!-- Website text logo -->
     </nav>
 
-    <section class="hero">
-        <div class="badge">Student-friendly budgeting</div>
+    <section class="hero"> <!-- Main hero section -->
+        <div class="badge">Student-friendly budgeting</div> <!-- Small feature badge -->
 
-        <h1>See your <span>Cost of Living</span> clearly.</h1>
+        <h1>See your <span>Cost of Living</span> clearly.</h1> <!-- Main landing page heading -->
 
         <p>
             CostLens helps you understand your monthly affordability.
             Enter your income and expenses and get a clear view of your budget — fast.
-        </p>
+        </p> <!-- Short explanation of what the site does -->
 
-        <div class="buttons">
-            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up →</a>
-            <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+        <div class="buttons"> <!-- Main action buttons -->
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up →</a> <!-- Link to sign up page -->
+            <a href="{% url 'login' %}" class="btn btn-secondary">Login</a> <!-- Link to login page -->
         </div>
     </section>
 
-    <section class="features">
-        <div class="card">
-            <h3>Simple monthly inputs</h3>
-            <p>Enter your income and expenses to instantly see affordability.</p>
+    <section class="features"> <!-- Feature cards section -->
+        <div class="card"> <!-- First feature card -->
+            <h3>Simple monthly inputs</h3> <!-- Feature heading -->
+            <p>Enter your income and expenses to instantly see affordability.</p> <!-- Feature description -->
         </div>
 
-        <div class="card">
-            <h3>Clear affordability view</h3>
-            <p>Understand how comfortable your budget is after essentials.</p>
+        <div class="card"> <!-- Second feature card -->
+            <h3>Clear affordability view</h3> <!-- Feature heading -->
+            <p>Understand how comfortable your budget is after essentials.</p> <!-- Feature description -->
         </div>
 
-        <div class="card">
-            <h3>Charts & history</h3>
-            <p>Track spending patterns and view past entries easily.</p>
+        <div class="card"> <!-- Third feature card -->
+            <h3>Charts & history</h3> <!-- Feature heading -->
+            <p>Track spending patterns and view past entries easily.</p> <!-- Feature description -->
         </div>
     </section>
 
     <div class="footer">
         Built for a university project.
-    </div>
+    </div> <!-- Small footer text -->
 
 </body>
 </html>

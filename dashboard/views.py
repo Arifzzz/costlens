@@ -1,75 +1,75 @@
-from decimal import Decimal
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
-from django.contrib.auth import login, logout, update_session_auth_hash
-from django.contrib.auth.decorators import login_required
-from .models import BudgetEntry, CostOfLivingEntry
-from .forms import UserUpdateForm
+from decimal import Decimal  # Used for accurate money calculations
+from django.shortcuts import render, redirect  # Loads pages and redirects users
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm  # Built-in auth forms
+from django.contrib.auth import login, logout, update_session_auth_hash  # Login/logout/session tools
+from django.contrib.auth.decorators import login_required  # Protects pages from guests
+from .models import BudgetEntry, CostOfLivingEntry  # Import database models
+from .forms import UserUpdateForm  # Custom form for updating account details
 
 
-def landing(request):
-    return render(request, "dashboard/index.html")
+def landing(request):  # Public homepage view
+    return render(request, "dashboard/index.html")  # Render landing page template
 
 
-def signup(request):
-    if request.user.is_authenticated:
-        return redirect("dashboard")
+def signup(request):  # User registration view
+    if request.user.is_authenticated:  # If already logged in
+        return redirect("dashboard")  # Send user to dashboard
 
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect("dashboard")
+    if request.method == "POST":  # If form submitted
+        form = UserCreationForm(request.POST)  # Create signup form with user data
+        if form.is_valid():  # Check if form passes validation
+            user = form.save()  # Save new user account
+            login(request, user)  # Automatically log user in
+            return redirect("dashboard")  # Redirect after signup
     else:
-        form = UserCreationForm()
+        form = UserCreationForm()  # Empty signup form on first load
 
-    return render(request, "dashboard/signup.html", {"form": form})
+    return render(request, "dashboard/signup.html", {"form": form})  # Show signup page
 
 
-def user_login(request):
-    if request.user.is_authenticated:
-        return redirect("dashboard")
+def user_login(request):  # Login view
+    if request.user.is_authenticated:  # If already logged in
+        return redirect("dashboard")  # Skip login page
 
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect("dashboard")
+    if request.method == "POST":  # If login form submitted
+        form = AuthenticationForm(request, data=request.POST)  # Create auth form
+        if form.is_valid():  # Validate username/password
+            user = form.get_user()  # Get logged in user
+            login(request, user)  # Start user session
+            return redirect("dashboard")  # Send to dashboard
     else:
-        form = AuthenticationForm()
+        form = AuthenticationForm()  # Empty login form
 
-    return render(request, "dashboard/login.html", {"form": form})
+    return render(request, "dashboard/login.html", {"form": form})  # Show login page
 
 
-@login_required
-def dashboard(request):
-    latest_entry = BudgetEntry.objects.filter(user=request.user).order_by("-created_at").first()
-    recent_entries = BudgetEntry.objects.filter(user=request.user).order_by("-created_at")[:4]
+@login_required  # Requires user login
+def dashboard(request):  # Main dashboard page
+    latest_entry = BudgetEntry.objects.filter(user=request.user).order_by("-created_at").first()  # Most recent budget entry
+    recent_entries = BudgetEntry.objects.filter(user=request.user).order_by("-created_at")[:4]  # Last 4 entries
 
     return render(request, "dashboard/home.html", {
         "latest_entry": latest_entry,
         "recent_entries": recent_entries,
-    })
+    })  # Load dashboard page with data
 
 
-@login_required
-def budget(request):
-    result = None
+@login_required  # Requires login
+def budget(request):  # Budget calculator page
+    result = None  # Empty result until calculation
 
-    if request.method == "POST":
-        monthly_income = Decimal(request.POST.get("monthly_income", "0"))
-        rent = Decimal(request.POST.get("rent", "0"))
-        food = Decimal(request.POST.get("food", "0"))
-        transport = Decimal(request.POST.get("transport", "0"))
-        utilities = Decimal(request.POST.get("utilities", "0"))
-        other = Decimal(request.POST.get("other", "0"))
+    if request.method == "POST":  # If form submitted
+        monthly_income = Decimal(request.POST.get("monthly_income", "0"))  # Get income
+        rent = Decimal(request.POST.get("rent", "0"))  # Get rent
+        food = Decimal(request.POST.get("food", "0"))  # Get food cost
+        transport = Decimal(request.POST.get("transport", "0"))  # Get transport cost
+        utilities = Decimal(request.POST.get("utilities", "0"))  # Get utilities cost
+        other = Decimal(request.POST.get("other", "0"))  # Get other spending
 
-        total_expenses = rent + food + transport + utilities + other
-        remaining_balance = monthly_income - total_expenses
+        total_expenses = rent + food + transport + utilities + other  # Add all expenses
+        remaining_balance = monthly_income - total_expenses  # Remaining money after bills
 
-        BudgetEntry.objects.create(
+        BudgetEntry.objects.create(  # Save budget history
             user=request.user,
             monthly_income=monthly_income,
             rent=rent,
@@ -81,20 +81,20 @@ def budget(request):
             remaining_balance=remaining_balance
         )
 
-        result = {
+        result = {  # Results shown to user
             "monthly_income": monthly_income,
             "total_expenses": total_expenses,
             "remaining_balance": remaining_balance
         }
 
-    return render(request, "dashboard/budget.html", {"result": result})
+    return render(request, "dashboard/budget.html", {"result": result})  # Show budget page
 
 
-@login_required
-def cost_of_living(request):
-    result = None
+@login_required  # Requires login
+def cost_of_living(request):  # City affordability comparison page
+    result = None  # No results at first
 
-    data = {
+    data = {  # Static project dataset
         "London": {
             "Tesco": {"rent": 1200, "food": 320, "transport": 150, "utilities": 120},
             "Aldi": {"rent": 1200, "food": 260, "transport": 150, "utilities": 120},
@@ -112,21 +112,21 @@ def cost_of_living(request):
         },
     }
 
-    if request.method == "POST":
-        monthly_salary = Decimal(request.POST.get("salary", "0"))
-        preferred_city = request.POST.get("preferred_city", "")
+    if request.method == "POST":  # If comparison form submitted
+        monthly_salary = Decimal(request.POST.get("salary", "0"))  # User salary
+        preferred_city = request.POST.get("preferred_city", "")  # User chosen city
 
-        comparisons = []
+        comparisons = []  # Stores all results
 
-        for city, shops in data.items():
-            for shop, costs in shops.items():
-                total_cost = Decimal(str(sum(costs.values())))
-                remaining = monthly_salary - total_cost
+        for city, shops in data.items():  # Loop through each city
+            for shop, costs in shops.items():  # Loop through each shop
+                total_cost = Decimal(str(sum(costs.values())))  # Add living costs
+                remaining = monthly_salary - total_cost  # Salary left after expenses
 
                 if monthly_salary > 0:
-                    score = int(max(0, min(100, (remaining / monthly_salary) * 100)))
+                    score = int(max(0, min(100, (remaining / monthly_salary) * 100)))  # Affordability score
                 else:
-                    score = 0
+                    score = 0  # Prevent divide by zero
 
                 if score >= 40:
                     status = "Comfortable"
@@ -137,7 +137,7 @@ def cost_of_living(request):
                 else:
                     status = "Unaffordable"
 
-                comparisons.append({
+                comparisons.append({  # Save comparison result
                     "city": city,
                     "shop": shop,
                     "rent": costs["rent"],
@@ -151,9 +151,9 @@ def cost_of_living(request):
                     "preferred": city == preferred_city,
                 })
 
-        best_option = min(comparisons, key=lambda x: x["total"])
+        best_option = min(comparisons, key=lambda x: x["total"])  # Cheapest option found
 
-        CostOfLivingEntry.objects.create(
+        CostOfLivingEntry.objects.create(  # Save comparison history
             user=request.user,
             salary=monthly_salary,
             preferred_city=preferred_city,
@@ -164,64 +164,64 @@ def cost_of_living(request):
             affordability_score=best_option["score"],
         )
 
-        result = {
+        result = {  # Send results to page
             "monthly_salary": monthly_salary,
             "preferred_city": preferred_city,
             "comparisons": comparisons,
             "best": best_option,
         }
 
-    return render(request, "dashboard/costofliving.html", {"result": result})
+    return render(request, "dashboard/costofliving.html", {"result": result})  # Show comparison page
 
 
-@login_required
-def profile(request):
-    message = ""
+@login_required  # Requires login
+def profile(request):  # User profile page
+    message = ""  # Success message placeholder
 
     if request.method == "POST":
-        if "update_details" in request.POST:
+        if "update_details" in request.POST:  # If updating username/email
             user_form = UserUpdateForm(request.POST, instance=request.user)
             password_form = PasswordChangeForm(request.user)
 
             if user_form.is_valid():
-                user_form.save()
+                user_form.save()  # Save account changes
                 message = "Account details updated successfully."
             else:
                 password_form = PasswordChangeForm(request.user)
 
-        elif "change_password" in request.POST:
+        elif "change_password" in request.POST:  # If changing password
             user_form = UserUpdateForm(instance=request.user)
             password_form = PasswordChangeForm(request.user, request.POST)
 
             if password_form.is_valid():
-                user = password_form.save()
-                update_session_auth_hash(request, user)
+                user = password_form.save()  # Save new password
+                update_session_auth_hash(request, user)  # Keep user logged in
                 message = "Password updated successfully."
         else:
             user_form = UserUpdateForm(instance=request.user)
             password_form = PasswordChangeForm(request.user)
     else:
-        user_form = UserUpdateForm(instance=request.user)
+        user_form = UserUpdateForm(instance=request.user)  # Load default forms
         password_form = PasswordChangeForm(request.user)
 
     return render(request, "dashboard/profile.html", {
         "user_form": user_form,
         "password_form": password_form,
         "message": message,
-    })
+    })  # Show profile page
 
 
-@login_required
-def history(request):
-    budget_history = BudgetEntry.objects.filter(user=request.user).order_by("-created_at")
-    cost_history = CostOfLivingEntry.objects.filter(user=request.user).order_by("-created_at")
+@login_required  # Requires login
+def history(request):  # View saved history page
+    budget_history = BudgetEntry.objects.filter(user=request.user).order_by("-created_at")  # Budget history
+    cost_history = CostOfLivingEntry.objects.filter(user=request.user).order_by("-created_at")  # Cost comparison history
 
     return render(request, "dashboard/history.html", {
         "budget_history": budget_history,
         "cost_history": cost_history,
-    })
+    })  # Show history page
 
 
-def user_logout(request):
-    logout(request)
-    return redirect("landing")
+def user_logout(request):  # Logout view
+    logout(request)  # End user session
+    return redirect("landing")  # Return to landing page
