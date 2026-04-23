@@ -112,7 +112,7 @@ def cost_of_living(request):
         },
     }
 
-    if request.method == "POST":
+        if request.method == "POST":
         monthly_salary = Decimal(request.POST.get("salary", "0"))
         preferred_city = request.POST.get("preferred_city", "")
 
@@ -159,8 +159,8 @@ def cost_of_living(request):
             preferred_city=preferred_city,
             best_city=best_option["city"],
             best_shop=best_option["shop"],
-            best_total_cost=best_option["total"],
-            best_remaining=best_option["remaining"],
+            best_total_cost=float(best_option["total"]),
+            best_remaining=float(best_option["remaining"]),
             affordability_score=best_option["score"],
         )
 
