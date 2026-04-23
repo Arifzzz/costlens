@@ -89,6 +89,7 @@ def budget(request):
 
     return render(request, "dashboard/budget.html", {"result": result})
 
+
 @login_required
 def cost_of_living(request):
     result = None
@@ -185,6 +186,8 @@ def profile(request):
             if user_form.is_valid():
                 user_form.save()
                 message = "Account details updated successfully."
+            else:
+                password_form = PasswordChangeForm(request.user)
 
         elif "change_password" in request.POST:
             user_form = UserUpdateForm(instance=request.user)
